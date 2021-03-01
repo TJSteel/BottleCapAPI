@@ -1,0 +1,11 @@
+# DB exports
+/database_scripts/dbRestore
+
+# Postman exports
+/postman
+
+# Code coverage reports
+/coverage
+
+# Distribution folder
+/dist

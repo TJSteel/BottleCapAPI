@@ -1,0 +1,401 @@
+{
+	"info": {
+		"_postman_id": "2f75ff25-e2ee-412d-bd65-3e23f2229e4a",
+		"name": "bottleCaps",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Bottle Caps",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"should contain the right count of bottle caps\", function () {\r",
+							"    pm.expect(pm.response.json().length).to.equal(4);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{webUrl}}/bottleCaps/getAll",
+					"host": [
+						"{{webUrl}}"
+					],
+					"path": [
+						"bottleCaps",
+						"getAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Glenfiddich",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"should contain the right name\", function () {\r",
+							"    pm.expect(pm.response.json().name).to.equal(\"Glenfiddich 12 Year\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{webUrl}}/bottleCaps/getById?id=3",
+					"host": [
+						"{{webUrl}}"
+					],
+					"path": [
+						"bottleCaps",
+						"getById"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Test Bottle Cap",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"id\": 4,\r\n        \"name\": \"Test\",\r\n        \"country\": \"Test\",\r\n        \"brewerey\": \"Test\",\r\n        \"description\": \"Test\",\r\n        \"colors\": [\r\n            \"Test\"\r\n        ],\r\n        \"logo\": \"Test\",\r\n        \"year\": 1970\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{webUrl}}/bottleCaps/create",
+					"host": [
+						"{{webUrl}}"
+					],
+					"path": [
+						"bottleCaps",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Test Bottle Cap Failure",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"should state why this has failed\", function () {\r",
+							"    pm.expect(pm.response.json().message).to.equal(\"a bottle cap with id '4' already exists\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"id\": 4,\r\n        \"name\": \"Test\",\r\n        \"country\": \"Test\",\r\n        \"brewerey\": \"Test\",\r\n        \"description\": \"Test\",\r\n        \"colors\": [\r\n            \"Test\"\r\n        ],\r\n        \"logo\": \"Test\",\r\n        \"year\": 1970\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{webUrl}}/bottleCaps/create",
+					"host": [
+						"{{webUrl}}"
+					],
+					"path": [
+						"bottleCaps",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Bottle Caps After Post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"should contain the right count of bottle caps\", function () {\r",
+							"    pm.expect(pm.response.json().length).to.equal(5);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{webUrl}}/bottleCaps/getAll",
+					"host": [
+						"{{webUrl}}"
+					],
+					"path": [
+						"bottleCaps",
+						"getAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Test Bottle Cap",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"should contain the right name\", function () {\r",
+							"    pm.expect(pm.response.json().name).to.equal(\"Test\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{webUrl}}/bottleCaps/getById?id=4",
+					"host": [
+						"{{webUrl}}"
+					],
+					"path": [
+						"bottleCaps",
+						"getById"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put Bottle Cap",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"id\": 4,\r\n        \"name\": \"Test after put\",\r\n        \"country\": \"Test\",\r\n        \"brewerey\": \"Test\",\r\n        \"description\": \"Test\",\r\n        \"colors\": [\r\n            \"Test\"\r\n        ],\r\n        \"logo\": \"Test\",\r\n        \"year\": 1970\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{webUrl}}/bottleCaps/update",
+					"host": [
+						"{{webUrl}}"
+					],
+					"path": [
+						"bottleCaps",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Test Bottle Cap After Put",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"should contain the right name\", function () {\r",
+							"    pm.expect(pm.response.json().name).to.equal(\"Test after put\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{webUrl}}/bottleCaps/getById?id=4",
+					"host": [
+						"{{webUrl}}"
+					],
+					"path": [
+						"bottleCaps",
+						"getById"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Test Bottle Cap",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{webUrl}}/bottleCaps/deleteById?id=4",
+					"host": [
+						"{{webUrl}}"
+					],
+					"path": [
+						"bottleCaps",
+						"deleteById"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Test Bottle Cap Failure",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{webUrl}}/bottleCaps/deleteById?id=4",
+					"host": [
+						"{{webUrl}}"
+					],
+					"path": [
+						"bottleCaps",
+						"deleteById"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
